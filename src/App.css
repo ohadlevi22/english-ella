@@ -1,29 +1,47 @@
-/* English4U - Kid-friendly Grammar Game */
-/* Touch-friendly (min 44px targets), RTL support */
+/* English4U - ROBLOX STYLE */
+/* Bold fonts, bright colors, 3D buttons, game-like UI */
 
 * {
   box-sizing: border-box;
 }
 
 :root {
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --success: #22c55e;
-  --success-light: #dcfce7;
-  --error: #ef4444;
-  --error-light: #fee2e2;
-  --bg: #f8fafc;
-  --card-bg: #ffffff;
-  --text: #1e293b;
-  --text-light: #64748b;
-  --border: #e2e8f0;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  /* Roblox-inspired colors - bright & bold */
+  --roblox-red: #e74c3c;
+  --roblox-green: #2ecc71;
+  --roblox-blue: #3498db;
+  --roblox-yellow: #f1c40f;
+  --roblox-purple: #9b59b6;
+  --roblox-orange: #e67e22;
+  --roblox-pink: #fd79a8;
+  --roblox-teal: #00cec9;
+
+  /* UI Colors */
+  --bg: #1a1a2e;
+  --bg-light: #16213e;
+  --card-bg: #0f3460;
+  --card-border: #e94560;
+  --text: #ffffff;
+  --text-secondary: #a8d8ea;
+
+  /* Game feedback */
+  --success: #00ff88;
+  --success-bg: rgba(0, 255, 136, 0.2);
+  --error: #ff4757;
+  --error-bg: rgba(255, 71, 87, 0.2);
+
+  /* 3D Effects */
+  --shadow-3d: 0 6px 0 rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 20px rgba(233, 69, 96, 0.5);
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Rubik', 'Fredoka', -apple-system, sans-serif;
   background: var(--bg);
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(233, 69, 96, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 50%);
   color: var(--text);
   min-height: 100vh;
 }
@@ -38,111 +56,167 @@ body {
   flex-direction: column;
 }
 
-/* Header */
+/* ===== HEADER - Roblox Style ===== */
 .app-header {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background: linear-gradient(180deg, #e94560 0%, #c23a51 100%);
   color: white;
   padding: 1.5rem;
   text-align: center;
-  box-shadow: var(--shadow);
+  border-bottom: 6px solid #a02d44;
+  box-shadow: 0 4px 20px rgba(233, 69, 96, 0.4);
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: 2rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2.5rem;
   font-weight: 700;
+  text-shadow:
+    3px 3px 0 #a02d44,
+    -1px -1px 0 #ff6b81;
+  letter-spacing: 2px;
 }
 
 .subtitle {
   margin: 0.5rem 0 0;
-  opacity: 0.9;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
 }
 
 .score-display {
   margin-top: 0.75rem;
-  padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
+  padding: 0.6rem 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid #fff;
+  border-radius: 25px;
   display: inline-block;
-  font-weight: 600;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
 }
 
-/* Main content */
+/* ===== MAIN CONTENT ===== */
 .app-main {
   flex: 1;
   padding: 1.5rem;
-  max-width: 600px;
+  max-width: 650px;
   margin: 0 auto;
   width: 100%;
 }
 
-/* Menu */
+/* ===== MENU ===== */
 .menu {
   text-align: center;
 }
 
 .menu h2 {
-  font-size: 1.5rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.8rem;
   margin-bottom: 1.5rem;
   color: var(--text);
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
 }
 
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.menu-grid .menu-btn:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+/* Roblox-style 3D buttons */
 .menu-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 100px; /* Touch-friendly */
+  min-height: 110px;
   padding: 1.5rem;
-  margin-bottom: 1rem;
   border: none;
-  border-radius: 16px;
-  font-size: 1.5rem;
-  font-weight: 600;
+  border-radius: 20px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: var(--shadow);
+  transition: all 0.1s ease;
+  position: relative;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+  border-bottom: 6px solid rgba(0,0,0,0.3);
+}
+
+.menu-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
 .menu-btn:active {
-  transform: scale(0.98);
-}
-
-.quiz-btn {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
-}
-
-.drag-btn {
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-  color: white;
+  transform: translateY(4px);
+  border-bottom-width: 2px;
 }
 
 .btn-desc {
   display: block;
   font-size: 0.9rem;
-  font-weight: 400;
+  font-weight: 500;
   opacity: 0.9;
   margin-top: 0.5rem;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 }
 
-/* Progress bar */
+/* Button colors - Roblox bright style */
+.quiz-btn {
+  background: linear-gradient(180deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  border-bottom-color: #1a5276;
+}
+
+.drag-btn {
+  background: linear-gradient(180deg, #9b59b6 0%, #8e44ad 100%);
+  color: white;
+  border-bottom-color: #5b2c6f;
+}
+
+.memory-btn {
+  background: linear-gradient(180deg, #f39c12 0%, #d68910 100%);
+  color: white;
+  border-bottom-color: #9a7d0a;
+}
+
+.fix-btn {
+  background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%);
+  color: white;
+  border-bottom-color: #1e8449;
+}
+
+.type-btn {
+  background: linear-gradient(180deg, #fd79a8 0%, #e84393 100%);
+  color: white;
+  border-bottom-color: #9b2c6f;
+}
+
+/* ===== PROGRESS BAR ===== */
 .progress-bar {
-  background: var(--border);
-  border-radius: 10px;
-  height: 24px;
+  background: var(--bg-light);
+  border: 3px solid var(--card-border);
+  border-radius: 15px;
+  height: 35px;
   position: relative;
   margin-bottom: 1.5rem;
   overflow: hidden;
 }
 
 .progress-fill {
-  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background: linear-gradient(90deg, var(--roblox-green) 0%, #27ae60 100%);
   height: 100%;
-  border-radius: 10px;
+  border-radius: 12px;
   transition: width 0.3s ease;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2);
 }
 
 .progress-text {
@@ -151,83 +225,110 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
 }
 
-/* Cards */
+/* ===== CARDS ===== */
 .question-card,
-.sentence-card {
+.sentence-card,
+.fix-card,
+.type-card {
   background: var(--card-bg);
-  border-radius: 20px;
+  border: 4px solid var(--card-border);
+  border-radius: 25px;
   padding: 1.5rem;
-  box-shadow: var(--shadow);
   margin-bottom: 1rem;
+  box-shadow:
+    0 6px 0 rgba(0,0,0,0.3),
+    var(--shadow-glow);
 }
 
 .tense-badge {
   display: inline-block;
-  background: var(--primary);
-  color: white;
-  padding: 0.25rem 0.75rem;
+  background: linear-gradient(180deg, var(--roblox-yellow) 0%, #d4a20a 100%);
+  color: #1a1a2e;
+  padding: 0.4rem 1rem;
   border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
   margin-bottom: 1rem;
+  border-bottom: 3px solid #9a7d0a;
+  text-shadow: none;
 }
 
 .hebrew-prompt {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
   margin-bottom: 0.75rem;
   line-height: 1.6;
+  color: var(--text);
 }
 
 .english-sentence {
-  font-size: 1.5rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.6rem;
   font-weight: 700;
-  color: var(--primary-dark);
+  color: var(--roblox-teal);
   margin-bottom: 1rem;
   padding: 1rem;
-  background: #f1f5f9;
-  border-radius: 12px;
+  background: rgba(0, 206, 201, 0.1);
+  border: 3px solid var(--roblox-teal);
+  border-radius: 15px;
   text-align: center;
 }
 
-.instruction-text {
-  font-size: 0.9rem;
-  color: var(--text-light);
+.instruction-text,
+.fix-instruction,
+.memory-instruction {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1rem;
+  color: var(--text-secondary);
   margin-bottom: 1rem;
   text-align: center;
 }
 
-/* Hint */
+/* ===== HINT ===== */
 .hint-btn {
-  background: #fef3c7;
-  border: 2px solid #fbbf24;
-  color: #92400e;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
+  background: linear-gradient(180deg, var(--roblox-yellow) 0%, #d4a20a 100%);
+  border: none;
+  border-bottom: 4px solid #9a7d0a;
+  color: #1a1a2e;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
   margin-bottom: 1rem;
-  min-height: 44px; /* Touch-friendly */
+  min-height: 44px;
+  transition: all 0.1s;
+}
+
+.hint-btn:active {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
 }
 
 .hint-box {
-  background: #fef3c7;
-  border: 2px solid #fbbf24;
-  color: #92400e;
+  background: rgba(241, 196, 15, 0.2);
+  border: 3px solid var(--roblox-yellow);
+  color: var(--roblox-yellow);
   padding: 1rem;
-  border-radius: 12px;
+  border-radius: 15px;
   margin-bottom: 1rem;
+  font-family: 'Rubik', sans-serif;
   font-size: 1rem;
+  font-weight: 600;
   line-height: 1.5;
 }
 
-/* Quiz options */
+/* ===== QUIZ OPTIONS ===== */
 .options-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -236,125 +337,136 @@ body {
 }
 
 .option-btn {
-  min-height: 60px; /* Touch-friendly */
+  min-height: 65px;
   padding: 1rem;
-  border: 3px solid var(--border);
-  border-radius: 12px;
-  background: var(--card-bg);
-  font-size: 1.1rem;
-  font-weight: 600;
+  border: 4px solid var(--text-secondary);
+  border-radius: 15px;
+  background: var(--bg-light);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.1s;
   color: var(--text);
+  border-bottom-width: 6px;
 }
 
 .option-btn:not(:disabled):hover {
-  border-color: var(--primary);
-  background: #f1f5f9;
+  border-color: var(--roblox-teal);
+  background: rgba(0, 206, 201, 0.1);
+  transform: translateY(-2px);
 }
 
 .option-btn:not(:disabled):active {
-  transform: scale(0.98);
-}
-
-.option-btn.selected {
-  border-color: var(--primary);
-  background: #e0e7ff;
+  transform: translateY(2px);
+  border-bottom-width: 4px;
 }
 
 .option-btn.correct {
   border-color: var(--success);
-  background: var(--success-light);
-  color: #166534;
+  background: var(--success-bg);
+  color: var(--success);
 }
 
 .option-btn.incorrect {
   border-color: var(--error);
-  background: var(--error-light);
-  color: #991b1b;
+  background: var(--error-bg);
+  color: var(--error);
 }
 
 .option-btn:disabled {
   cursor: default;
 }
 
-/* Feedback */
+/* ===== FEEDBACK ===== */
 .feedback {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   padding: 1rem;
-  border-radius: 12px;
+  border-radius: 15px;
   margin-bottom: 1rem;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: 4px solid;
 }
 
 .feedback.correct {
-  background: var(--success-light);
-  color: #166534;
-  border: 2px solid var(--success);
+  background: var(--success-bg);
+  color: var(--success);
+  border-color: var(--success);
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
 .feedback.incorrect {
-  background: var(--error-light);
-  color: #991b1b;
-  border: 2px solid var(--error);
+  background: var(--error-bg);
+  color: var(--error);
+  border-color: var(--error);
 }
 
 .feedback-icon {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
-/* Drag & Drop */
+/* ===== DRAG & DROP ===== */
 .sentence-builder {
   min-height: 80px;
   padding: 1rem;
-  border: 3px dashed var(--border);
-  border-radius: 12px;
+  border: 4px dashed var(--text-secondary);
+  border-radius: 15px;
   margin-bottom: 1rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
   justify-content: flex-start;
-  background: #f8fafc;
+  background: rgba(255,255,255,0.05);
   transition: all 0.2s;
 }
 
 .sentence-builder.correct {
   border-color: var(--success);
-  background: var(--success-light);
+  border-style: solid;
+  background: var(--success-bg);
 }
 
 .sentence-builder.incorrect {
   border-color: var(--error);
-  background: var(--error-light);
+  border-style: solid;
+  background: var(--error-bg);
 }
 
 .sentence-builder .placeholder {
-  color: var(--text-light);
+  color: var(--text-secondary);
   font-style: italic;
   width: 100%;
   text-align: center;
+  font-family: 'Rubik', sans-serif;
 }
 
 .built-word {
-  background: var(--primary);
+  background: linear-gradient(180deg, var(--roblox-blue) 0%, #2980b9 100%);
   color: white;
   padding: 0.75rem 1rem;
-  border-radius: 8px;
+  border-radius: 10px;
+  font-family: 'Fredoka', sans-serif;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: grab;
   user-select: none;
   min-height: 44px;
   display: flex;
   align-items: center;
+  border-bottom: 4px solid #1a5276;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
 }
 
 .built-word:active {
   cursor: grabbing;
+  transform: translateY(2px);
+  border-bottom-width: 2px;
 }
 
 .available-words {
@@ -363,33 +475,39 @@ body {
   gap: 0.5rem;
   justify-content: center;
   padding: 1rem;
-  background: #f1f5f9;
-  border-radius: 12px;
+  background: var(--bg-light);
+  border: 3px solid var(--card-border);
+  border-radius: 15px;
   min-height: 60px;
   margin-bottom: 1rem;
 }
 
 .word-btn {
-  background: var(--card-bg);
-  border: 2px solid var(--primary);
-  color: var(--primary-dark);
+  background: linear-gradient(180deg, #ecf0f1 0%, #bdc3c7 100%);
+  border: none;
+  border-bottom: 4px solid #95a5a6;
+  color: #2c3e50;
   padding: 0.75rem 1rem;
-  border-radius: 8px;
+  border-radius: 10px;
+  font-family: 'Fredoka', sans-serif;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  min-height: 44px; /* Touch-friendly */
-  transition: all 0.2s;
+  min-height: 44px;
+  transition: all 0.1s;
   user-select: none;
 }
 
 .word-btn:not(:disabled):hover {
-  background: var(--primary);
+  background: linear-gradient(180deg, var(--roblox-teal) 0%, #00a8a8 100%);
   color: white;
+  border-bottom-color: #007a7a;
+  transform: translateY(-2px);
 }
 
 .word-btn:not(:disabled):active {
-  transform: scale(0.95);
+  transform: translateY(2px);
+  border-bottom-width: 2px;
 }
 
 .word-btn:disabled {
@@ -397,46 +515,65 @@ body {
   cursor: default;
 }
 
-/* Buttons */
+/* ===== BUTTONS ===== */
 .next-btn,
 .check-btn {
   width: 100%;
-  min-height: 56px; /* Touch-friendly */
+  min-height: 60px;
   padding: 1rem;
   border: none;
-  border-radius: 12px;
-  font-size: 1.2rem;
+  border-radius: 15px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.3rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.1s;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
 }
 
 .next-btn {
-  background: linear-gradient(135deg, var(--success) 0%, #16a34a 100%);
+  background: linear-gradient(180deg, var(--roblox-green) 0%, #27ae60 100%);
   color: white;
+  border-bottom: 6px solid #1e8449;
 }
 
 .check-btn {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background: linear-gradient(180deg, var(--roblox-blue) 0%, #2980b9 100%);
   color: white;
+  border-bottom: 6px solid #1a5276;
   margin-bottom: 0.75rem;
+}
+
+.next-btn:hover,
+.check-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
 .next-btn:active,
 .check-btn:active {
-  transform: scale(0.98);
+  transform: translateY(4px);
+  border-bottom-width: 2px;
 }
 
 .reset-btn {
-  background: #f1f5f9;
-  border: 2px solid var(--border);
-  color: var(--text);
+  background: linear-gradient(180deg, #95a5a6 0%, #7f8c8d 100%);
+  border: none;
+  border-bottom: 4px solid #616a6b;
+  color: white;
   padding: 0.75rem 1rem;
-  border-radius: 10px;
+  border-radius: 12px;
+  font-family: 'Fredoka', sans-serif;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   min-height: 44px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+.reset-btn:active {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
 }
 
 .action-buttons {
@@ -450,67 +587,22 @@ body {
   width: 100%;
   padding: 0.75rem;
   background: transparent;
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  color: var(--text-light);
+  border: 3px solid var(--text-secondary);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  font-family: 'Fredoka', sans-serif;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   min-height: 44px;
   margin-top: 0.5rem;
+  transition: all 0.2s;
 }
 
 .back-btn:hover {
-  background: #f1f5f9;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .app-header h1 {
-    font-size: 1.5rem;
-  }
-
-  .options-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .english-sentence {
-    font-size: 1.25rem;
-  }
-}
-
-/* Remove default focus outline, add custom */
-button:focus-visible,
-.option-btn:focus-visible,
-.word-btn:focus-visible {
-  outline: 3px solid var(--primary);
-  outline-offset: 2px;
-}
-
-/* Menu Grid for 5 games */
-.menu-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.menu-grid .menu-btn:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
-}
-
-.memory-btn {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  color: white;
-}
-
-.fix-btn {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: white;
-}
-
-.type-btn {
-  background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
-  color: white;
+  background: rgba(255,255,255,0.1);
+  border-color: var(--text);
+  color: var(--text);
 }
 
 /* ===== MEMORY MATCH GAME ===== */
@@ -526,15 +618,11 @@ button:focus-visible,
 }
 
 .stat {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.memory-instruction {
-  font-size: 1.1rem;
-  color: var(--text-light);
-  margin-bottom: 1rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--roblox-yellow);
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
 }
 
 .memory-grid {
@@ -548,7 +636,7 @@ button:focus-visible,
   aspect-ratio: 1;
   min-height: 70px;
   border: none;
-  border-radius: 12px;
+  border-radius: 15px;
   cursor: pointer;
   perspective: 1000px;
   background: transparent;
@@ -574,31 +662,35 @@ button:focus-visible,
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 12px;
+  border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
 .card-front {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background: linear-gradient(180deg, var(--roblox-purple) 0%, #7d3c98 100%);
   color: white;
   font-size: 2rem;
+  border-bottom: 5px solid #5b2c6f;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
 }
 
 .card-back {
-  background: white;
-  color: var(--primary-dark);
+  background: linear-gradient(180deg, #ecf0f1 0%, #bdc3c7 100%);
+  color: #2c3e50;
   transform: rotateY(180deg);
-  border: 3px solid var(--primary);
+  border: 3px solid var(--roblox-purple);
 }
 
 .memory-card.matched .card-back {
-  background: var(--success-light);
-  border-color: var(--success);
-  color: #166534;
+  background: linear-gradient(180deg, var(--roblox-green) 0%, #27ae60 100%);
+  border-color: var(--roblox-green);
+  color: white;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
 }
 
 .memory-card:disabled {
@@ -607,20 +699,25 @@ button:focus-visible,
 
 .game-complete {
   background: var(--card-bg);
-  border-radius: 20px;
+  border: 4px solid var(--success);
+  border-radius: 25px;
   padding: 2rem;
-  box-shadow: var(--shadow);
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
   text-align: center;
 }
 
 .game-complete h2 {
-  font-size: 2rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2.5rem;
   margin-bottom: 0.5rem;
+  color: var(--success);
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
 }
 
 .game-complete p {
+  font-family: 'Rubik', sans-serif;
   font-size: 1.2rem;
-  color: var(--text-light);
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
 }
 
@@ -631,34 +728,28 @@ button:focus-visible,
 }
 
 .play-again-btn {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background: linear-gradient(180deg, var(--roblox-blue) 0%, #2980b9 100%);
   color: white;
   border: none;
-  border-radius: 12px;
+  border-bottom: 5px solid #1a5276;
+  border-radius: 15px;
   padding: 1rem;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
   cursor: pointer;
   min-height: 50px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+.play-again-btn:active {
+  transform: translateY(3px);
+  border-bottom-width: 2px;
 }
 
 /* ===== FIX MISTAKE GAME ===== */
 .fix-mode {
   text-align: center;
-}
-
-.fix-card {
-  background: var(--card-bg);
-  border-radius: 20px;
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-  margin-bottom: 1rem;
-}
-
-.fix-instruction {
-  font-size: 1rem;
-  color: var(--text-light);
-  margin-bottom: 1rem;
 }
 
 .sentence-words {
@@ -670,26 +761,36 @@ button:focus-visible,
 }
 
 .word-token {
-  background: #f1f5f9;
-  border: 2px solid var(--border);
-  border-radius: 8px;
+  background: linear-gradient(180deg, #34495e 0%, #2c3e50 100%);
+  border: none;
+  border-bottom: 4px solid #1a252f;
+  border-radius: 10px;
   padding: 0.75rem 1rem;
+  font-family: 'Fredoka', sans-serif;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: white;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.1s;
   min-height: 44px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
 }
 
 .word-token:hover:not(:disabled) {
-  border-color: var(--primary);
-  background: #e0e7ff;
+  background: linear-gradient(180deg, var(--roblox-teal) 0%, #00a8a8 100%);
+  border-bottom-color: #007a7a;
+  transform: translateY(-2px);
+}
+
+.word-token:active:not(:disabled) {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
 }
 
 .word-token.error-word {
-  background: var(--error-light);
-  border-color: var(--error);
-  color: #991b1b;
+  background: linear-gradient(180deg, var(--error) 0%, #c0392b 100%);
+  border-bottom-color: #922b21;
+  animation: pulse 0.5s ease;
 }
 
 .word-token.wrong-selection {
@@ -697,14 +798,19 @@ button:focus-visible,
 }
 
 .word-token.highlighted {
-  background: var(--success-light);
-  border-color: var(--success);
+  background: linear-gradient(180deg, var(--roblox-green) 0%, #27ae60 100%);
+  border-bottom-color: #1e8449;
 }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 .fix-options {
@@ -716,31 +822,41 @@ button:focus-visible,
 }
 
 .fix-option-btn {
-  background: white;
-  border: 2px solid var(--primary);
-  color: var(--primary-dark);
-  border-radius: 10px;
+  background: linear-gradient(180deg, #ecf0f1 0%, #bdc3c7 100%);
+  border: none;
+  border-bottom: 4px solid #95a5a6;
+  color: #2c3e50;
+  border-radius: 12px;
   padding: 0.75rem 1.5rem;
+  font-family: 'Fredoka', sans-serif;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   min-height: 44px;
-  transition: all 0.2s;
+  transition: all 0.1s;
 }
 
 .fix-option-btn:hover {
-  background: var(--primary);
+  background: linear-gradient(180deg, var(--roblox-green) 0%, #27ae60 100%);
   color: white;
+  border-bottom-color: #1e8449;
+  transform: translateY(-2px);
+}
+
+.fix-option-btn:active {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
 }
 
 .corrected-sentence {
-  background: #f0fdf4;
-  border: 2px solid var(--success);
-  border-radius: 12px;
+  background: var(--success-bg);
+  border: 3px solid var(--success);
+  border-radius: 15px;
   padding: 1rem;
   margin-bottom: 1rem;
+  font-family: 'Fredoka', sans-serif;
   font-size: 1.1rem;
-  color: #166534;
+  color: var(--success);
 }
 
 /* ===== TYPE IT GAME ===== */
@@ -748,18 +864,10 @@ button:focus-visible,
   text-align: center;
 }
 
-.type-card {
-  background: var(--card-bg);
-  border-radius: 20px;
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-  margin-bottom: 1rem;
-}
-
 .verb-hint {
-  background: #f0f9ff;
-  border: 2px solid #0ea5e9;
-  border-radius: 10px;
+  background: rgba(52, 152, 219, 0.2);
+  border: 3px solid var(--roblox-blue);
+  border-radius: 12px;
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   display: inline-flex;
@@ -768,43 +876,46 @@ button:focus-visible,
 }
 
 .verb-label {
-  color: #0369a1;
-  font-weight: 500;
+  font-family: 'Rubik', sans-serif;
+  color: var(--text-secondary);
+  font-weight: 600;
 }
 
 .verb-base {
-  color: #0c4a6e;
+  font-family: 'Fredoka', sans-serif;
+  color: var(--roblox-teal);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .english-sentence-type {
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 1.5rem;
   padding: 1rem;
-  background: #f1f5f9;
-  border-radius: 12px;
+  background: var(--bg-light);
+  border: 3px solid var(--card-border);
+  border-radius: 15px;
   line-height: 2;
 }
 
 .blank-space {
   display: inline-block;
-  min-width: 120px;
-  border-bottom: 3px solid var(--primary);
+  min-width: 130px;
+  border-bottom: 4px solid var(--roblox-teal);
   margin: 0 0.25rem;
   padding: 0.25rem 0.5rem;
 }
 
 .correct-answer {
   color: var(--success);
-  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
 .wrong-answer {
   color: var(--error);
-  font-weight: 700;
   text-decoration: line-through;
 }
 
@@ -817,37 +928,50 @@ button:focus-visible,
 .type-input {
   width: 100%;
   padding: 1rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border: 3px solid var(--border);
-  border-radius: 12px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: var(--bg-light);
+  border: 4px solid var(--text-secondary);
+  border-radius: 15px;
   text-align: center;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
+  color: var(--text);
 }
 
 .type-input:focus {
   outline: none;
-  border-color: var(--primary);
+  border-color: var(--roblox-teal);
+  box-shadow: 0 0 15px rgba(0, 206, 201, 0.3);
 }
 
 .type-input::placeholder {
-  color: var(--text-light);
-  font-weight: 400;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .full-sentence {
-  background: #f0fdf4;
-  border: 2px solid var(--success);
-  border-radius: 12px;
+  background: var(--success-bg);
+  border: 3px solid var(--success);
+  border-radius: 15px;
   padding: 1rem;
   margin-bottom: 1rem;
+  font-family: 'Fredoka', sans-serif;
   font-size: 1.1rem;
-  color: #166534;
+  color: var(--success);
 }
 
-/* Responsive adjustments for new games */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+
   .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .options-grid {
     grid-template-columns: 1fr;
   }
 
@@ -858,11 +982,11 @@ button:focus-visible,
 
   .card-front,
   .card-back {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .card-front {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .english-sentence-type {
@@ -870,6 +994,20 @@ button:focus-visible,
   }
 
   .blank-space {
-    min-width: 80px;
+    min-width: 90px;
   }
+
+  .menu-btn {
+    font-size: 1.2rem;
+    min-height: 90px;
+  }
+}
+
+/* ===== FOCUS STATES ===== */
+button:focus-visible,
+.option-btn:focus-visible,
+.word-btn:focus-visible,
+.type-input:focus-visible {
+  outline: 3px solid var(--roblox-yellow);
+  outline-offset: 3px;
 }
