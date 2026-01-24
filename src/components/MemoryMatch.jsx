@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { speakEnglish } from '../utils/speech'
 
 function MemoryMatch({ pairs, onScore, onBack }) {
   const [cards, setCards] = useState([])
@@ -47,6 +48,10 @@ function MemoryMatch({ pairs, onScore, onBack }) {
         setMatched(newMatched)
         setFlipped([])
         onScore(true)
+
+        // Speak the verb pair
+        const pair = pairs[firstCard.pairId]
+        setTimeout(() => speakEnglish(`${pair.a}, ${pair.b}`), 300)
 
         // Check if game complete
         if (newMatched.length === cards.length) {

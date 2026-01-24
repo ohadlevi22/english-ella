@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { speakEnglish } from '../utils/speech'
 
 function DragDropMode({ sentences, onScore, onBack }) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -20,6 +21,13 @@ function DragDropMode({ sentences, onScore, onBack }) {
 
     onScore(isCorrect)
     setShowFeedback(true)
+
+    // Speak the correct sentence
+    if (isCorrect) {
+      const sentence = currentSentence.correctOrder.map(i => currentSentence.words[i]).join(' ')
+      setTimeout(() => speakEnglish(sentence), 300)
+    }
+
     return isCorrect
   }
 

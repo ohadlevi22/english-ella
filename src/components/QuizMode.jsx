@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { speakEnglish } from '../utils/speech'
 
 function QuizMode({ questions, onScore, onBack }) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -14,7 +15,14 @@ function QuizMode({ questions, onScore, onBack }) {
     if (showFeedback) return // Already answered
     setSelectedAnswer(index)
     setShowFeedback(true)
-    onScore(index === currentQuestion.correct)
+    const correct = index === currentQuestion.correct
+    onScore(correct)
+
+    // Speak the sentence on correct answer
+    if (correct) {
+      const sentence = currentQuestion.englishSentence.replace('___', currentQuestion.options[currentQuestion.correct])
+      setTimeout(() => speakEnglish(sentence), 300)
+    }
   }
 
   const handleNext = () => {

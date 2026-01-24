@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { speakEnglish } from '../utils/speech'
 
 function TypeIt({ questions, onScore, onBack }) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -30,6 +31,11 @@ function TypeIt({ questions, onScore, onBack }) {
     setIsCorrect(correct)
     setShowFeedback(true)
     onScore(correct)
+
+    // Speak the full sentence on correct answer
+    if (correct) {
+      setTimeout(() => speakEnglish(currentQuestion.fullSentence), 300)
+    }
   }
 
   const handleKeyPress = (e) => {
