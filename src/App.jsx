@@ -2,7 +2,6 @@ import { useState } from 'react'
 import QuizMode from './components/QuizMode'
 import DragDropMode from './components/DragDropMode'
 import MemoryMatch from './components/MemoryMatch'
-import FixMistake from './components/FixMistake'
 import TypeIt from './components/TypeIt'
 import './App.css'
 
@@ -315,110 +314,6 @@ const memoryPairs = [
   { a: 'cook', b: 'cooking' }
 ]
 
-// Fix the Mistake sentences
-const fixMistakeSentences = [
-  {
-    id: 1,
-    sentence: 'She are playing tennis now.',
-    errorIndex: 1, // "are"
-    options: ['is', 'am', 'be'],
-    correction: 'is',
-    correctedSentence: 'She is playing tennis now.',
-    hebrewPrompt: 'מצא את השגיאה: היא משחקת טניס עכשיו',
-    tense: 'Present Progressive'
-  },
-  {
-    id: 2,
-    sentence: 'They plays football every day.',
-    errorIndex: 1, // "plays"
-    options: ['play', 'playing', 'is playing'],
-    correction: 'play',
-    correctedSentence: 'They play football every day.',
-    hebrewPrompt: 'מצא את השגיאה: הם משחקים כדורגל כל יום',
-    tense: 'Present Simple'
-  },
-  {
-    id: 3,
-    sentence: 'I am like pizza.',
-    errorIndex: 1, // "am"
-    options: ['(remove)', 'is', 'are'],
-    correction: '(remove)',
-    correctedSentence: 'I like pizza.',
-    hebrewPrompt: 'מצא את השגיאה: אני אוהב פיצה',
-    tense: 'Present Simple'
-  },
-  {
-    id: 4,
-    sentence: 'He drink coffee every morning.',
-    errorIndex: 1, // "drink"
-    options: ['drinks', 'drinking', 'is drinking'],
-    correction: 'drinks',
-    correctedSentence: 'He drinks coffee every morning.',
-    hebrewPrompt: 'מצא את השגיאה: הוא שותה קפה כל בוקר',
-    tense: 'Present Simple'
-  },
-  {
-    id: 5,
-    sentence: 'The children is watching TV.',
-    errorIndex: 2, // "is"
-    options: ['are', 'am', 'be'],
-    correction: 'are',
-    correctedSentence: 'The children are watching TV.',
-    hebrewPrompt: 'מצא את השגיאה: הילדים צופים בטלוויזיה',
-    tense: 'Present Progressive'
-  },
-  {
-    id: 6,
-    sentence: 'She go to school every day.',
-    errorIndex: 1, // "go"
-    options: ['goes', 'going', 'is going'],
-    correction: 'goes',
-    correctedSentence: 'She goes to school every day.',
-    hebrewPrompt: 'מצא את השגיאה: היא הולכת לבית הספר כל יום',
-    tense: 'Present Simple'
-  },
-  {
-    id: 7,
-    sentence: 'We is learning English now.',
-    errorIndex: 1, // "is"
-    options: ['are', 'am', 'be'],
-    correction: 'are',
-    correctedSentence: 'We are learning English now.',
-    hebrewPrompt: 'מצא את השגיאה: אנחנו לומדים אנגלית עכשיו',
-    tense: 'Present Progressive'
-  },
-  {
-    id: 8,
-    sentence: 'The cat sleep on the bed.',
-    errorIndex: 2, // "sleep"
-    options: ['sleeps', 'sleeping', 'is sleeping'],
-    correction: 'sleeps',
-    correctedSentence: 'The cat sleeps on the bed.',
-    hebrewPrompt: 'מצא את השגיאה: החתול ישן על המיטה',
-    tense: 'Present Simple'
-  },
-  {
-    id: 9,
-    sentence: 'Look! The bird fly in the sky.',
-    errorIndex: 3, // "fly"
-    options: ['is flying', 'flies', 'flying'],
-    correction: 'is flying',
-    correctedSentence: 'Look! The bird is flying in the sky.',
-    hebrewPrompt: 'מצא את השגיאה: תראה! הציפור עפה בשמיים',
-    tense: 'Present Progressive'
-  },
-  {
-    id: 10,
-    sentence: 'I am eat breakfast now.',
-    errorIndex: 2, // "eat"
-    options: ['eating', 'eats', 'ate'],
-    correction: 'eating',
-    correctedSentence: 'I am eating breakfast now.',
-    hebrewPrompt: 'מצא את השגיאה: אני אוכל ארוחת בוקר עכשיו',
-    tense: 'Present Progressive'
-  }
-]
-
 // Type It questions
 const typeItQuestions = [
   {
@@ -556,7 +451,7 @@ const typeItQuestions = [
 ]
 
 function App() {
-  const [mode, setMode] = useState('menu') // menu, quiz, dragdrop, memory, fix, type
+  const [mode, setMode] = useState('menu') // menu, quiz, dragdrop, memory, type
   const [score, setScore] = useState(0)
   const [totalAnswered, setTotalAnswered] = useState(0)
 
@@ -610,13 +505,6 @@ function App() {
                 <span className="btn-desc">מצא את הזוגות</span>
               </button>
               <button
-                className="menu-btn fix-btn"
-                onClick={() => setMode('fix')}
-              >
-                🔧 תקן את השגיאה
-                <span className="btn-desc">מצא ותקן את הטעות</span>
-              </button>
-              <button
                 className="menu-btn type-btn"
                 onClick={() => setMode('type')}
               >
@@ -646,14 +534,6 @@ function App() {
         {mode === 'memory' && (
           <MemoryMatch
             pairs={memoryPairs}
-            onScore={handleScore}
-            onBack={resetGame}
-          />
-        )}
-
-        {mode === 'fix' && (
-          <FixMistake
-            sentences={fixMistakeSentences}
             onScore={handleScore}
             onBack={resetGame}
           />
