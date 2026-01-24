@@ -3,6 +3,7 @@ import QuizMode from './components/QuizMode'
 import DragDropMode from './components/DragDropMode'
 import MemoryMatch from './components/MemoryMatch'
 import TypeIt from './components/TypeIt'
+import BackgroundMusic from './components/BackgroundMusic'
 import './App.css'
 
 // Grammar content for 4th grade Israeli students
@@ -468,6 +469,7 @@ function App() {
 
   return (
     <div className="app" dir="rtl">
+      <BackgroundMusic />
       <header className="app-header">
         <h1>🎓 English4U</h1>
         <p className="subtitle">לומדים אנגלית בכיף!</p>
