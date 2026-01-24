@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import QuizMode from './components/QuizMode'
 import DragDropMode from './components/DragDropMode'
+import MemoryMatch from './components/MemoryMatch'
+import FixMistake from './components/FixMistake'
+import TypeIt from './components/TypeIt'
 import './App.css'
 
 // Grammar content for 4th grade Israeli students
@@ -300,8 +303,260 @@ const dragDropSentences = [
   }
 ]
 
+// Memory Match pairs - verb forms
+const memoryPairs = [
+  { a: 'play', b: 'playing' },
+  { a: 'run', b: 'running' },
+  { a: 'eat', b: 'eating' },
+  { a: 'read', b: 'reading' },
+  { a: 'write', b: 'writing' },
+  { a: 'sleep', b: 'sleeping' },
+  { a: 'walk', b: 'walking' },
+  { a: 'cook', b: 'cooking' }
+]
+
+// Fix the Mistake sentences
+const fixMistakeSentences = [
+  {
+    id: 1,
+    sentence: 'She are playing tennis now.',
+    errorIndex: 1, // "are"
+    options: ['is', 'am', 'be'],
+    correction: 'is',
+    correctedSentence: 'She is playing tennis now.',
+    hebrewPrompt: 'מצא את השגיאה: היא משחקת טניס עכשיו',
+    tense: 'Present Progressive'
+  },
+  {
+    id: 2,
+    sentence: 'They plays football every day.',
+    errorIndex: 1, // "plays"
+    options: ['play', 'playing', 'is playing'],
+    correction: 'play',
+    correctedSentence: 'They play football every day.',
+    hebrewPrompt: 'מצא את השגיאה: הם משחקים כדורגל כל יום',
+    tense: 'Present Simple'
+  },
+  {
+    id: 3,
+    sentence: 'I am like pizza.',
+    errorIndex: 1, // "am"
+    options: ['(remove)', 'is', 'are'],
+    correction: '(remove)',
+    correctedSentence: 'I like pizza.',
+    hebrewPrompt: 'מצא את השגיאה: אני אוהב פיצה',
+    tense: 'Present Simple'
+  },
+  {
+    id: 4,
+    sentence: 'He drink coffee every morning.',
+    errorIndex: 1, // "drink"
+    options: ['drinks', 'drinking', 'is drinking'],
+    correction: 'drinks',
+    correctedSentence: 'He drinks coffee every morning.',
+    hebrewPrompt: 'מצא את השגיאה: הוא שותה קפה כל בוקר',
+    tense: 'Present Simple'
+  },
+  {
+    id: 5,
+    sentence: 'The children is watching TV.',
+    errorIndex: 2, // "is"
+    options: ['are', 'am', 'be'],
+    correction: 'are',
+    correctedSentence: 'The children are watching TV.',
+    hebrewPrompt: 'מצא את השגיאה: הילדים צופים בטלוויזיה',
+    tense: 'Present Progressive'
+  },
+  {
+    id: 6,
+    sentence: 'She go to school every day.',
+    errorIndex: 1, // "go"
+    options: ['goes', 'going', 'is going'],
+    correction: 'goes',
+    correctedSentence: 'She goes to school every day.',
+    hebrewPrompt: 'מצא את השגיאה: היא הולכת לבית הספר כל יום',
+    tense: 'Present Simple'
+  },
+  {
+    id: 7,
+    sentence: 'We is learning English now.',
+    errorIndex: 1, // "is"
+    options: ['are', 'am', 'be'],
+    correction: 'are',
+    correctedSentence: 'We are learning English now.',
+    hebrewPrompt: 'מצא את השגיאה: אנחנו לומדים אנגלית עכשיו',
+    tense: 'Present Progressive'
+  },
+  {
+    id: 8,
+    sentence: 'The cat sleep on the bed.',
+    errorIndex: 2, // "sleep"
+    options: ['sleeps', 'sleeping', 'is sleeping'],
+    correction: 'sleeps',
+    correctedSentence: 'The cat sleeps on the bed.',
+    hebrewPrompt: 'מצא את השגיאה: החתול ישן על המיטה',
+    tense: 'Present Simple'
+  },
+  {
+    id: 9,
+    sentence: 'Look! The bird fly in the sky.',
+    errorIndex: 3, // "fly"
+    options: ['is flying', 'flies', 'flying'],
+    correction: 'is flying',
+    correctedSentence: 'Look! The bird is flying in the sky.',
+    hebrewPrompt: 'מצא את השגיאה: תראה! הציפור עפה בשמיים',
+    tense: 'Present Progressive'
+  },
+  {
+    id: 10,
+    sentence: 'I am eat breakfast now.',
+    errorIndex: 2, // "eat"
+    options: ['eating', 'eats', 'ate'],
+    correction: 'eating',
+    correctedSentence: 'I am eating breakfast now.',
+    hebrewPrompt: 'מצא את השגיאה: אני אוכל ארוחת בוקר עכשיו',
+    tense: 'Present Progressive'
+  }
+]
+
+// Type It questions
+const typeItQuestions = [
+  {
+    id: 1,
+    hebrewPrompt: 'הוא משחק כדורגל עכשיו',
+    baseVerb: 'play',
+    sentenceBefore: 'He',
+    sentenceAfter: 'football now.',
+    acceptedAnswers: ['is playing'],
+    fullSentence: 'He is playing football now.',
+    hint: 'עכשיו = Present Progressive. עם He משתמשים ב-is + verb+ing',
+    tense: 'Present Progressive'
+  },
+  {
+    id: 2,
+    hebrewPrompt: 'היא הולכת לבית הספר כל יום',
+    baseVerb: 'walk',
+    sentenceBefore: 'She',
+    sentenceAfter: 'to school every day.',
+    acceptedAnswers: ['walks'],
+    fullSentence: 'She walks to school every day.',
+    hint: 'כל יום = Present Simple. עם She מוסיפים s לפועל',
+    tense: 'Present Simple'
+  },
+  {
+    id: 3,
+    hebrewPrompt: 'הם צופים בטלוויזיה עכשיו',
+    baseVerb: 'watch',
+    sentenceBefore: 'They',
+    sentenceAfter: 'TV now.',
+    acceptedAnswers: ['are watching'],
+    fullSentence: 'They are watching TV now.',
+    hint: 'עכשיו = Present Progressive. עם They משתמשים ב-are + verb+ing',
+    tense: 'Present Progressive'
+  },
+  {
+    id: 4,
+    hebrewPrompt: 'אני אוהב גלידה',
+    baseVerb: 'like',
+    sentenceBefore: 'I',
+    sentenceAfter: 'ice cream.',
+    acceptedAnswers: ['like'],
+    fullSentence: 'I like ice cream.',
+    hint: 'like הוא פועל רגש - לא משתמשים בו עם ing!',
+    tense: 'Present Simple'
+  },
+  {
+    id: 5,
+    hebrewPrompt: 'החתול ישן על המיטה',
+    baseVerb: 'sleep',
+    sentenceBefore: 'The cat',
+    sentenceAfter: 'on the bed.',
+    acceptedAnswers: ['sleeps'],
+    fullSentence: 'The cat sleeps on the bed.',
+    hint: 'זו עובדה כללית = Present Simple. חתול = יחיד, מוסיפים s',
+    tense: 'Present Simple'
+  },
+  {
+    id: 6,
+    hebrewPrompt: 'אמא מבשלת ארוחת ערב עכשיו',
+    baseVerb: 'cook',
+    sentenceBefore: 'Mom',
+    sentenceAfter: 'dinner now.',
+    acceptedAnswers: ['is cooking'],
+    fullSentence: 'Mom is cooking dinner now.',
+    hint: 'עכשיו = Present Progressive. אמא = יחיד, is + verb+ing',
+    tense: 'Present Progressive'
+  },
+  {
+    id: 7,
+    hebrewPrompt: 'אנחנו לומדים אנגלית בבית הספר',
+    baseVerb: 'learn',
+    sentenceBefore: 'We',
+    sentenceAfter: 'English at school.',
+    acceptedAnswers: ['learn'],
+    fullSentence: 'We learn English at school.',
+    hint: 'זה מה שאנחנו עושים באופן קבוע = Present Simple',
+    tense: 'Present Simple'
+  },
+  {
+    id: 8,
+    hebrewPrompt: 'הכלב רץ בפארק עכשיו',
+    baseVerb: 'run',
+    sentenceBefore: 'The dog',
+    sentenceAfter: 'in the park now.',
+    acceptedAnswers: ['is running'],
+    fullSentence: 'The dog is running in the park now.',
+    hint: 'עכשיו = Present Progressive. run → running (מכפילים n)',
+    tense: 'Present Progressive'
+  },
+  {
+    id: 9,
+    hebrewPrompt: 'הוא שותה חלב כל בוקר',
+    baseVerb: 'drink',
+    sentenceBefore: 'He',
+    sentenceAfter: 'milk every morning.',
+    acceptedAnswers: ['drinks'],
+    fullSentence: 'He drinks milk every morning.',
+    hint: 'כל בוקר = Present Simple. עם He מוסיפים s',
+    tense: 'Present Simple'
+  },
+  {
+    id: 10,
+    hebrewPrompt: 'שקט! התינוק ישן',
+    baseVerb: 'sleep',
+    sentenceBefore: 'Quiet! The baby',
+    sentenceAfter: '.',
+    acceptedAnswers: ['is sleeping'],
+    fullSentence: 'Quiet! The baby is sleeping.',
+    hint: 'שקט! = זה קורה עכשיו = Present Progressive',
+    tense: 'Present Progressive'
+  },
+  {
+    id: 11,
+    hebrewPrompt: 'היא תמיד קמה מוקדם',
+    baseVerb: 'wake up',
+    sentenceBefore: 'She always',
+    sentenceAfter: 'early.',
+    acceptedAnswers: ['wakes up'],
+    fullSentence: 'She always wakes up early.',
+    hint: 'תמיד = Present Simple. עם She מוסיפים s',
+    tense: 'Present Simple'
+  },
+  {
+    id: 12,
+    hebrewPrompt: 'אני כותב שיעורי בית עכשיו',
+    baseVerb: 'write',
+    sentenceBefore: 'I',
+    sentenceAfter: 'my homework now.',
+    acceptedAnswers: ['am writing'],
+    fullSentence: 'I am writing my homework now.',
+    hint: 'עכשיו = Present Progressive. עם I משתמשים ב-am',
+    tense: 'Present Progressive'
+  }
+]
+
 function App() {
-  const [mode, setMode] = useState('menu') // menu, quiz, dragdrop
+  const [mode, setMode] = useState('menu') // menu, quiz, dragdrop, memory, fix, type
   const [score, setScore] = useState(0)
   const [totalAnswered, setTotalAnswered] = useState(0)
 
@@ -332,20 +587,43 @@ function App() {
         {mode === 'menu' && (
           <div className="menu">
             <h2>בחר סוג תרגיל:</h2>
-            <button
-              className="menu-btn quiz-btn"
-              onClick={() => setMode('quiz')}
-            >
-              📝 חידון בחירה
-              <span className="btn-desc">בחר את התשובה הנכונה</span>
-            </button>
-            <button
-              className="menu-btn drag-btn"
-              onClick={() => setMode('dragdrop')}
-            >
-              🧩 בניית משפטים
-              <span className="btn-desc">גרור מילים לסדר נכון</span>
-            </button>
+            <div className="menu-grid">
+              <button
+                className="menu-btn quiz-btn"
+                onClick={() => setMode('quiz')}
+              >
+                📝 חידון בחירה
+                <span className="btn-desc">בחר את התשובה הנכונה</span>
+              </button>
+              <button
+                className="menu-btn drag-btn"
+                onClick={() => setMode('dragdrop')}
+              >
+                🧩 בניית משפטים
+                <span className="btn-desc">גרור מילים לסדר נכון</span>
+              </button>
+              <button
+                className="menu-btn memory-btn"
+                onClick={() => setMode('memory')}
+              >
+                🎴 זיכרון
+                <span className="btn-desc">מצא את הזוגות</span>
+              </button>
+              <button
+                className="menu-btn fix-btn"
+                onClick={() => setMode('fix')}
+              >
+                🔧 תקן את השגיאה
+                <span className="btn-desc">מצא ותקן את הטעות</span>
+              </button>
+              <button
+                className="menu-btn type-btn"
+                onClick={() => setMode('type')}
+              >
+                ⌨️ הקלד את התשובה
+                <span className="btn-desc">כתוב את הפועל הנכון</span>
+              </button>
+            </div>
           </div>
         )}
 
@@ -360,6 +638,30 @@ function App() {
         {mode === 'dragdrop' && (
           <DragDropMode
             sentences={dragDropSentences}
+            onScore={handleScore}
+            onBack={resetGame}
+          />
+        )}
+
+        {mode === 'memory' && (
+          <MemoryMatch
+            pairs={memoryPairs}
+            onScore={handleScore}
+            onBack={resetGame}
+          />
+        )}
+
+        {mode === 'fix' && (
+          <FixMistake
+            sentences={fixMistakeSentences}
+            onScore={handleScore}
+            onBack={resetGame}
+          />
+        )}
+
+        {mode === 'type' && (
+          <TypeIt
+            questions={typeItQuestions}
             onScore={handleScore}
             onBack={resetGame}
           />

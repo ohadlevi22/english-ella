@@ -486,3 +486,390 @@ button:focus-visible,
   outline: 3px solid var(--primary);
   outline-offset: 2px;
 }
+
+/* Menu Grid for 5 games */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.menu-grid .menu-btn:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.memory-btn {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+}
+
+.fix-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.type-btn {
+  background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+  color: white;
+}
+
+/* ===== MEMORY MATCH GAME ===== */
+.memory-mode {
+  text-align: center;
+}
+
+.game-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.stat {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.memory-instruction {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.memory-card {
+  aspect-ratio: 1;
+  min-height: 70px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  perspective: 1000px;
+  background: transparent;
+  padding: 0;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.memory-card.flipped .card-inner,
+.memory-card.matched .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.card-front {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  font-size: 2rem;
+}
+
+.card-back {
+  background: white;
+  color: var(--primary-dark);
+  transform: rotateY(180deg);
+  border: 3px solid var(--primary);
+}
+
+.memory-card.matched .card-back {
+  background: var(--success-light);
+  border-color: var(--success);
+  color: #166534;
+}
+
+.memory-card:disabled {
+  cursor: default;
+}
+
+.game-complete {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.game-complete h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.game-complete p {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+
+.complete-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.play-again-btn {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 50px;
+}
+
+/* ===== FIX MISTAKE GAME ===== */
+.fix-mode {
+  text-align: center;
+}
+
+.fix-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+}
+
+.fix-instruction {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.sentence-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.word-token {
+  background: #f1f5f9;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 44px;
+}
+
+.word-token:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: #e0e7ff;
+}
+
+.word-token.error-word {
+  background: var(--error-light);
+  border-color: var(--error);
+  color: #991b1b;
+}
+
+.word-token.wrong-selection {
+  animation: shake 0.3s ease;
+}
+
+.word-token.highlighted {
+  background: var(--success-light);
+  border-color: var(--success);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.fix-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.fix-option-btn {
+  background: white;
+  border: 2px solid var(--primary);
+  color: var(--primary-dark);
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  transition: all 0.2s;
+}
+
+.fix-option-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.corrected-sentence {
+  background: #f0fdf4;
+  border: 2px solid var(--success);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #166534;
+}
+
+/* ===== TYPE IT GAME ===== */
+.type-mode {
+  text-align: center;
+}
+
+.type-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+}
+
+.verb-hint {
+  background: #f0f9ff;
+  border: 2px solid #0ea5e9;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.verb-label {
+  color: #0369a1;
+  font-weight: 500;
+}
+
+.verb-base {
+  color: #0c4a6e;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.english-sentence-type {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #f1f5f9;
+  border-radius: 12px;
+  line-height: 2;
+}
+
+.blank-space {
+  display: inline-block;
+  min-width: 120px;
+  border-bottom: 3px solid var(--primary);
+  margin: 0 0.25rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.correct-answer {
+  color: var(--success);
+  font-weight: 700;
+}
+
+.wrong-answer {
+  color: var(--error);
+  font-weight: 700;
+  text-decoration: line-through;
+}
+
+.type-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.type-input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: 3px solid var(--border);
+  border-radius: 12px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.type-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.type-input::placeholder {
+  color: var(--text-light);
+  font-weight: 400;
+}
+
+.full-sentence {
+  background: #f0fdf4;
+  border: 2px solid var(--success);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #166534;
+}
+
+/* Responsive adjustments for new games */
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .memory-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .card-front,
+  .card-back {
+    font-size: 1rem;
+  }
+
+  .card-front {
+    font-size: 1.5rem;
+  }
+
+  .english-sentence-type {
+    font-size: 1.2rem;
+  }
+
+  .blank-space {
+    min-width: 80px;
+  }
+}
