@@ -1,0 +1,148 @@
+.home-page {
+  min-height: 100vh;
+  background: #1a1a2e;
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(233, 69, 96, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 50%);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Rubik', 'Fredoka', -apple-system, sans-serif;
+  color: #fff;
+}
+
+.home-header {
+  background: linear-gradient(180deg, #e94560 0%, #c23a51 100%);
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+  border-bottom: 6px solid #a02d44;
+  box-shadow: 0 4px 20px rgba(233, 69, 96, 0.4);
+}
+
+.home-greeting {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.home-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 3px 3px 0 #a02d44, -1px -1px 0 #ff6b81;
+}
+
+.home-subtitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  opacity: 0.9;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+.home-main {
+  flex: 1;
+  padding: 2rem 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.home-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.home-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  border-bottom: 6px solid rgba(0,0,0,0.3);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.home-card:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+}
+
+.home-card:active {
+  transform: translateY(3px);
+  border-bottom-width: 2px;
+}
+
+.home-card-grammar {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  border-bottom-color: #1a5276;
+}
+
+.home-card-hof {
+  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+  border-bottom-color: #a04000;
+}
+
+.home-card-stigmas {
+  background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+  border-bottom-color: #5b2c6f;
+}
+
+.home-card-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.home-card-content {
+  flex: 1;
+}
+
+.home-card-content h2 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+}
+
+.home-card-content p {
+  font-size: 0.95rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.home-card-arrow {
+  font-size: 1.5rem;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.home-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 480px) {
+  .home-title {
+    font-size: 2.2rem;
+  }
+
+  .home-card {
+    padding: 1.25rem;
+  }
+
+  .home-card-content h2 {
+    font-size: 1.2rem;
+  }
+}

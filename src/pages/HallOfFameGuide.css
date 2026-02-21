@@ -1,0 +1,463 @@
+.hof-page {
+  background: #fff9f0;
+  color: #2d2a26;
+  font-family: 'Rubik', 'Varela Round', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.hof-page::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,109,0,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hof-page::after {
+  content: '';
+  position: fixed;
+  bottom: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(124,77,255,0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hof-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.hof-back-link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 8px 20px;
+  border-radius: 100px;
+  background: #7c4dff;
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.hof-back-link:hover {
+  background: #651fff;
+  transform: translateY(-1px);
+}
+
+/* Header */
+.hof-header {
+  text-align: center;
+  padding: 50px 20px 30px;
+}
+
+.hof-header-emoji {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 12px;
+  animation: hof-bounce 2s infinite;
+}
+
+@keyframes hof-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.hof-header h1 {
+  font-family: 'Secular One', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #ff6d00;
+  margin: 0 0 8px;
+}
+
+.hof-subtitle {
+  font-size: 1.1rem;
+  color: #6b6560;
+  margin-bottom: 6px;
+}
+
+.hof-artist {
+  font-size: 0.95rem;
+  color: #7c4dff;
+  font-weight: 600;
+}
+
+/* Toggle Bar */
+.hof-toggle-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,249,240,0.95);
+  backdrop-filter: blur(10px);
+  padding: 12px 0;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.hof-toggle-btn {
+  padding: 8px 20px;
+  border-radius: 100px;
+  border: 2px solid #ff6d00;
+  background: white;
+  color: #ff6d00;
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 0 4px;
+}
+
+.hof-toggle-btn:hover {
+  background: #ff6d00;
+  color: white;
+}
+
+.hof-toggle-btn.active {
+  background: #ff6d00;
+  color: white;
+}
+
+/* Tips Box */
+.hof-tips-box {
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  border-radius: 20px;
+  padding: 28px;
+  margin: 24px 0 40px;
+  border: 2px solid #c8e6c9;
+  position: relative;
+  overflow: hidden;
+}
+
+.hof-tips-box::before {
+  content: '💡';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-size: 4rem;
+  opacity: 0.1;
+}
+
+.hof-tips-box h3 {
+  font-family: 'Secular One', sans-serif;
+  color: #2e7d32;
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+}
+
+.hof-tip-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  align-items: flex-start;
+}
+
+.hof-tip-icon {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Key Sounds */
+.hof-key-sounds {
+  background: linear-gradient(135deg, #fce4ec, #fff3e0);
+  border-radius: 20px;
+  padding: 28px;
+  margin: 40px 0;
+  border: 2px solid #ffccbc;
+}
+
+.hof-key-sounds h3 {
+  font-family: 'Secular One', sans-serif;
+  color: #f06292;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+}
+
+.hof-sound-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.hof-sound-item {
+  background: rgba(255,255,255,0.7);
+  padding: 14px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.2s;
+}
+
+.hof-sound-item:hover {
+  transform: scale(1.02);
+}
+
+.hof-sound-letter {
+  width: 44px;
+  height: 44px;
+  background: #ff6d00;
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  direction: ltr;
+}
+
+.hof-sound-info {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.hof-sound-info strong {
+  color: #ff6d00;
+}
+
+/* Sections */
+.hof-section {
+  margin-bottom: 36px;
+}
+
+.hof-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.hof-section-label.verse {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.hof-section-label.chorus {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.hof-section-label.bridge {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+/* Lyrics Card */
+.hof-lyrics-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.hof-lyrics-card:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.hof-lyrics-card.chorus-card {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border: 2px solid #ffe0b2;
+}
+
+.hof-lyrics-card.bridge-card {
+  background: linear-gradient(135deg, #f3e5f5 0%, #e8eaf6 100%);
+  border: 2px solid #e1bee7;
+}
+
+/* Line Pair */
+.hof-line-pair {
+  padding: 10px 12px;
+  margin: 0 -12px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  transition: background 0.2s;
+  border-radius: 8px;
+}
+
+.hof-line-pair:last-child {
+  border-bottom: none;
+}
+
+.hof-line-pair:hover {
+  background: rgba(255,109,0,0.04);
+}
+
+.hof-line-en {
+  font-size: 1.05rem;
+  color: #1a1a2e;
+  font-weight: 500;
+  direction: ltr;
+  text-align: left;
+  margin-bottom: 4px;
+  letter-spacing: 0.2px;
+}
+
+.hof-line-he {
+  font-size: 1.1rem;
+  color: #e65100;
+  font-weight: 600;
+  direction: rtl;
+  text-align: right;
+  font-family: 'Varela Round', 'Rubik', sans-serif;
+}
+
+/* Tricky highlights */
+.hof-tricky {
+  background: rgba(255,109,0,0.12);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.hof-tricky-he {
+  background: rgba(255,109,0,0.15);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* Repeat note */
+.hof-repeat-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: rgba(124,77,255,0.08);
+  border-radius: 12px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #7c4dff;
+  font-weight: 500;
+}
+
+/* Speed / Practice Section */
+.hof-speed-section {
+  background: linear-gradient(135deg, #e8eaf6, #e3f2fd);
+  border-radius: 20px;
+  padding: 28px;
+  margin: 40px 0;
+  border: 2px solid #c5cae9;
+  text-align: center;
+}
+
+.hof-speed-section h3 {
+  font-family: 'Secular One', sans-serif;
+  color: #448aff;
+  margin-bottom: 8px;
+}
+
+.hof-speed-section > p {
+  color: #6b6560;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+.hof-speed-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hof-speed-btn {
+  padding: 10px 22px;
+  border-radius: 100px;
+  border: 2px solid #448aff;
+  background: white;
+  color: #448aff;
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.hof-speed-btn:hover,
+.hof-speed-btn.active {
+  background: #448aff;
+  color: white;
+}
+
+.hof-speed-btn.active {
+  transform: scale(1.05);
+}
+
+.hof-plan-output {
+  margin-top: 20px;
+  text-align: right;
+  line-height: 2;
+  font-size: 0.95rem;
+}
+
+/* Hide modes */
+.hof-hide-hebrew .hof-line-he {
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.hof-hide-english .hof-line-en {
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Footer */
+.hof-footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b6560;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+  .hof-lyrics-card { padding: 20px; }
+  .hof-tips-box { padding: 20px; }
+  .hof-line-en { font-size: 0.95rem; }
+  .hof-line-he { font-size: 1rem; }
+  .hof-sound-grid { grid-template-columns: 1fr; }
+}
+
+@media print {
+  .hof-toggle-bar,
+  .hof-speed-section { display: none; }
+  .hof-lyrics-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  .hof-page { background: white; }
+}

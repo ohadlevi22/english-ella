@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שוברים סטיגמות | עובדות שישנו לכם את הראש</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&family=Noto+Sans+Hebrew:wght@300;400;600;800&family=Secular+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #0a0a0f;
+    --bg-card: #12121a;
+    --accent-gold: #f0c040;
+    --accent-coral: #ff6b6b;
+    --accent-teal: #4ecdc4;
+    --accent-purple: #a78bfa;
+    --accent-blue: #60a5fa;
+    --accent-pink: #f472b6;
+    --text-main: #e8e8f0;
+    --text-muted: #8888a0;
+    --glass: rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Noto Sans Hebrew', 'Rubik', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* Animated background */
+  .bg-mesh {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: 
+      radial-gradient(ellipse 600px 400px at 20% 20%, rgba(78, 205, 196, 0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 500px at 80% 60%, rgba(167, 139, 250, 0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 400px 300px at 50% 90%, rgba(240, 192, 64, 0.06) 0%, transparent 70%);
+    animation: meshFloat 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes meshFloat {
+    0% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.05) translate(-20px, 10px); }
+    100% { transform: scale(1) translate(10px, -15px); }
+  }
+
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    border: 1px solid var(--accent-gold);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    letter-spacing: 0.5px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Secular One', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.15;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-gold) 50%, var(--accent-coral) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+
+  .scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-left: 2px solid var(--accent-gold);
+    border-bottom: 2px solid var(--accent-gold);
+    transform: rotate(-45deg);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(-45deg) translateY(0); }
+    50% { transform: rotate(-45deg) translateY(8px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Section */
+  .section {
+    padding: 100px 0 60px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .section-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Secular One', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+
+  /* Cards grid */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(40px);
+    cursor: default;
+  }
+
+  .card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card:hover {
+    transform: translateY(-6px) !important;
+    border-color: rgba(255,255,255,0.15);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 0 20px 0 100%;
+    opacity: 0.07;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover::before { opacity: 0.12; }
+
+  .card.gold::before { background: var(--accent-gold); }
+  .card.coral::before { background: var(--accent-coral); }
+  .card.teal::before { background: var(--accent-teal); }
+  .card.purple::before { background: var(--accent-purple); }
+  .card.blue::before { background: var(--accent-blue); }
+  .card.pink::before { background: var(--accent-pink); }
+
+  .card-emoji {
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .card-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+
+  .card.gold .card-label { color: var(--accent-gold); background: rgba(240,192,64,0.1); }
+  .card.coral .card-label { color: var(--accent-coral); background: rgba(255,107,107,0.1); }
+  .card.teal .card-label { color: var(--accent-teal); background: rgba(78,205,196,0.1); }
+  .card.purple .card-label { color: var(--accent-purple); background: rgba(167,139,250,0.1); }
+  .card.blue .card-label { color: var(--accent-blue); background: rgba(96,165,250,0.1); }
+  .card.pink .card-label { color: var(--accent-pink); background: rgba(244,114,182,0.1); }
+
+  .card-title {
+    font-family: 'Secular One', sans-serif;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .card-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  /* Highlight stat */
+  .stat-highlight {
+    display: inline-block;
+    font-weight: 700;
+    color: var(--text-main);
+    position: relative;
+  }
+
+  .stat-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+  }
+
+  .card.gold .stat-highlight::after { background: var(--accent-gold); }
+  .card.coral .stat-highlight::after { background: var(--accent-coral); }
+  .card.teal .stat-highlight::after { background: var(--accent-teal); }
+  .card.purple .stat-highlight::after { background: var(--accent-purple); }
+  .card.blue .stat-highlight::after { background: var(--accent-blue); }
+  .card.pink .stat-highlight::after { background: var(--accent-pink); }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to left, transparent, var(--glass-border), transparent);
+    margin: 20px 0;
+  }
+
+  /* Quote block */
+  .quote-block {
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+  }
+
+  .quote-block blockquote {
+    font-family: 'Secular One', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    line-height: 1.5;
+    max-width: 750px;
+    margin: 0 auto 20px;
+    color: var(--text-main);
+    position: relative;
+  }
+
+  .quote-block blockquote::before {
+    content: '❝';
+    position: absolute;
+    top: -30px;
+    right: -15px;
+    font-size: 4rem;
+    color: var(--accent-gold);
+    opacity: 0.3;
+  }
+
+  .quote-author {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--glass-border);
+  }
+
+  .footer-heart {
+    color: var(--accent-coral);
+    display: inline-block;
+    animation: heartbeat 1.5s infinite;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .card { padding: 24px; }
+    .section { padding: 60px 0 40px; }
+  }
+
+  /* Scroll reveal stagger */
+  .card:nth-child(1) { transition-delay: 0s; }
+  .card:nth-child(2) { transition-delay: 0.1s; }
+  .card:nth-child(3) { transition-delay: 0.2s; }
+  .card:nth-child(4) { transition-delay: 0.3s; }
+  .card:nth-child(5) { transition-delay: 0.15s; }
+  .card:nth-child(6) { transition-delay: 0.25s; }
+</style>
+</head>
+<body>
+
+<div class="bg-mesh"></div>
+<div class="noise-overlay"></div>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-badge">✦ מפתחים את הראש ✦</span>
+    <h1>שוברים סטיגמות</h1>
+    <p>עובדות מפתיעות על עדות, טבע ומדינות — שמוכיחות שהמציאות הרבה יותר מעניינת ממה שחשבנו</p>
+    <div class="scroll-hint">
+      <span>גללו למטה</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 1: עדות -->
+  <section class="section" id="communities">
+    <div class="section-header">
+      <span class="section-icon">🌍</span>
+      <h2 class="section-title" style="color: var(--accent-gold);">סטיגמות על עדות ותרבויות</h2>
+      <p class="section-subtitle">כמה דברים שכדאי לדעת לפני שמכלילים</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card gold">
+        <span class="card-emoji">🇪🇹</span>
+        <span class="card-label">יהודי אתיופיה</span>
+        <div class="card-title">שמרו על היהדות אלפי שנים — בלי תלמוד</div>
+        <div class="card-text">
+          קהילת ביתא ישראל שמרה על מסורת יהודית ייחודית במשך <span class="stat-highlight">2,500 שנה</span> בבידוד מוחלט משאר העולם היהודי. הם שמרו שבת, כשרות וטהרה — רק על בסיס התורה שבכתב, ללא גמרא ותלמוד. מסירות שאין לה אח ורע.
+        </div>
+      </div>
+
+      <div class="card coral">
+        <span class="card-emoji">🇲🇦</span>
+        <span class="card-label">יהודי מרוקו</span>
+        <div class="card-title">שושלת של חכמה, רפואה ודיפלומטיה</div>
+        <div class="card-text">
+          יהודי מרוקו היו <span class="stat-highlight">יועצים של מלכים</span>, רופאים מובילים וסוחרים בינלאומיים. הם תיווכו בין אירופה לאפריקה ותרמו לפיוס בין תרבויות. המונארכיה המרוקאית הגנה על יהודים בתקופת השואה בניגוד ללחצי וישי.
+        </div>
+      </div>
+
+      <div class="card teal">
+        <span class="card-emoji">🇮🇱</span>
+        <span class="card-label">ערבים אזרחי ישראל</span>
+        <div class="card-title">הרופאים הראשונים שתתקלו בהם בבית חולים</div>
+        <div class="card-text">
+          כ-<span class="stat-highlight">21%</span> מהרופאים וכ-<span class="stat-highlight">40%</span> מהרוקחים בישראל הם ערבים. בזמן חירום, הצוותים הערבים והיהודים עובדים כתף אל כתף להציל חיים — ללא הבדל דת, עדה או לאום.
+        </div>
+      </div>
+
+      <div class="card purple">
+        <span class="card-emoji">🇮🇳</span>
+        <span class="card-label">יהודי הודו</span>
+        <div class="card-title">2,000 שנה בלי טיפת אנטישמיות</div>
+        <div class="card-text">
+          קהילת בני ישראל בהודו חיו <span class="stat-highlight">למעלה מ-2,000 שנה</span> בשלום מוחלט עם שכניהם. הודו היא אחת המדינות היחידות בהיסטוריה שבה יהודים מעולם לא סבלו מרדיפות. דוגמה חיה לדו-קיום אמיתי.
+        </div>
+      </div>
+
+      <div class="card blue">
+        <span class="card-emoji">🧬</span>
+        <span class="card-label">מיתוס הגזע</span>
+        <div class="card-title">מבחינה גנטית — גזעים לא קיימים</div>
+        <div class="card-text">
+          מחקר הגנום האנושי הוכיח ש-<span class="stat-highlight">99.9%</span> מה-DNA של כל בני האדם זהה. ההבדלים הגנטיים בתוך "גזע" מסוים גדולים יותר מההבדלים בין "גזעים". חלוקה לגזעים היא קונסטרוקציה חברתית, לא ביולוגית.
+        </div>
+      </div>
+
+      <div class="card pink">
+        <span class="card-emoji">🇷🇺</span>
+        <span class="card-label">יהודי רוסיה ומזרח אירופה</span>
+        <div class="card-title">אינטלקטואלים שעיצבו את העולם</div>
+        <div class="card-text">
+          למרות רדיפות, פוגרומים ומגבלות חינוך — יהודי מזרח אירופה הולידו <span class="stat-highlight">20%</span> מכלל חתני פרס נובל, פיתחו את תעשיית הקולנוע, וחוללו מהפכות בפיזיקה, מתמטיקה ומדעי המחשב.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- QUOTE -->
+  <div class="quote-block">
+    <blockquote>אנשים לא נולדים שונאים. שנאה היא דבר נלמד — ואם אפשר ללמד שנאה, אפשר ללמד גם אהבה.</blockquote>
+    <span class="quote-author">— נלסון מנדלה</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 2: טבע -->
+  <section class="section" id="nature">
+    <div class="section-header">
+      <span class="section-icon">🌿</span>
+      <h2 class="section-title" style="color: var(--accent-teal);">סטיגמות על הטבע</h2>
+      <p class="section-subtitle">הטבע הוא הרבה יותר חכם ממה שנדמה</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card teal">
+        <span class="card-emoji">🦇</span>
+        <span class="card-label">עטלפים</span>
+        <div class="card-title">לא ערפדים — אלא גיבורי על של המערכת האקולוגית</div>
+        <div class="card-text">
+          עטלף בודד יכול לאכול עד <span class="stat-highlight">1,200 יתושים</span> בשעה אחת. הם מאביקים מאות סוגי צמחים ומפיצים זרעים ביערות גשם. בלעדיהם, לא היו לנו בננות, מנגו ואגוזי קשיו. הם מצילים חיים — לא גונבים דם.
+        </div>
+      </div>
+
+      <div class="card gold">
+        <span class="card-emoji">🕷️</span>
+        <span class="card-label">עכבישים</span>
+        <div class="card-title">בלעדיהם, העולם היה מוצף בחרקים</div>
+        <div class="card-text">
+          עכבישי העולם אוכלים <span class="stat-highlight">400-800 מיליון טון</span> חרקים בשנה — יותר ממשקל כל בני האדם ביחד. הם שומרים על האיזון האקולוגי ומונעים מגיפות של מזיקים חקלאיים.
+        </div>
+      </div>
+
+      <div class="card coral">
+        <span class="card-emoji">🐺</span>
+        <span class="card-label">זאבים</span>
+        <div class="card-title">השיבו נהר שלם לכיוונו — פשוטו כמשמעו</div>
+        <div class="card-text">
+          כשזאבים הוחזרו ליילוסטון ב-1995, הם שינו את התנהגות האיילים, שאפשרה לצמחייה לצמוח מחדש לאורך נהרות. זה <span class="stat-highlight">ייצב את גדות הנהר</span> ושינה את מסלולו הפיזי. תופעה שנקראת "מפל טרופי".
+        </div>
+      </div>
+
+      <div class="card purple">
+        <span class="card-emoji">🍄</span>
+        <span class="card-label">פטריות</span>
+        <div class="card-title">האינטרנט של הטבע חי מתחת לרגליכם</div>
+        <div class="card-text">
+          רשת הפטריות התת-קרקעית (מיקוריזה) מחברת <span class="stat-highlight">90%</span> מהצמחים בעולם. עצים משתמשים ברשת הזו כדי לשלוח חומרי הזנה לעצים חולים, להזהיר משכנים ממזיקים, ולחלוק משאבים. יער הוא קהילה, לא אוסף של עצים.
+        </div>
+      </div>
+
+      <div class="card blue">
+        <span class="card-emoji">🐙</span>
+        <span class="card-label">תמנונים</span>
+        <div class="card-title">שלושה לבבות, כחול דם, ואינטליגנציה מטורפת</div>
+        <div class="card-text">
+          לתמנון יש <span class="stat-highlight">3 לבבות</span>, הדם שלו כחול, ו-2/3 מהנוירונים שלו נמצאים בזרועות — כל זרוע "חושבת" באופן עצמאי. הם פותחים צנצנות, פותרים מבוכים ומזהים פנים אנושיים. אינטליגנציה מסוג אחר לגמרי.
+        </div>
+      </div>
+
+      <div class="card pink">
+        <span class="card-emoji">🐝</span>
+        <span class="card-label">דבורים</span>
+        <div class="card-title">מתמטיקאיות ודמוקרטיות</div>
+        <div class="card-text">
+          דבורים בונות חלות בצורת משושה כי זה <span class="stat-highlight">הצורה היעילה ביותר</span> מתמטית למילוי שטח. כשכוורת מחפשת בית חדש, הדבורים מצביעות בריקוד — מערכת הצבעה דמוקרטית שקדמה לאנושות במיליוני שנים.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- QUOTE 2 -->
+  <div class="quote-block">
+    <blockquote>בכל פינה שטרם הבטנו — שם מסתתרת ההפתעה הגדולה הבאה.</blockquote>
+    <span class="quote-author">— קרל סייגן (בעיבוד חופשי)</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 3: מדינות -->
+  <section class="section" id="countries">
+    <div class="section-header">
+      <span class="section-icon">🗺️</span>
+      <h2 class="section-title" style="color: var(--accent-purple);">סטיגמות על מדינות</h2>
+      <p class="section-subtitle">העולם מורכב הרבה יותר מהתקשורת מציגה</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card purple">
+        <span class="card-emoji">🇷🇼</span>
+        <span class="card-label">רואנדה</span>
+        <div class="card-title">מרצח עם למובילה עולמית בשוויון מגדרי</div>
+        <div class="card-text">
+          שלושים שנה אחרי הרצח הפולני, רואנדה היא המדינה עם <span class="stat-highlight">הפרלמנט הכי נשי בעולם</span> — מעל 61% נשים. היא גם אחת המדינות הנקיות ביותר באפריקה — שקיות ניילון אסורות שם מ-2008.
+        </div>
+      </div>
+
+      <div class="card teal">
+        <span class="card-emoji">🇨🇴</span>
+        <span class="card-label">קולומביה</span>
+        <div class="card-title">לא רק קרטלים — המדינה השנייה הכי מגוונת ביולוגית בעולם</div>
+        <div class="card-text">
+          קולומביה מכילה כ-<span class="stat-highlight">10%</span> ממגוון המינים בעולם. יש בה יותר מיני ציפורים מכל מדינה אחרת — <span class="stat-highlight">1,958 מינים</span>. היא גם ממובילות הייצוא של פרחים, קפה ואמרלדים.
+        </div>
+      </div>
+
+      <div class="card gold">
+        <span class="card-emoji">🇮🇷</span>
+        <span class="card-label">איראן</span>
+        <div class="card-title">מעל 60% מהסטודנטים באוניברסיטאות — נשים</div>
+        <div class="card-text">
+          למרות המשטר השמרני, <span class="stat-highlight">מעל 60%</span> מהסטודנטים באוניברסיטאות איראניות הן נשים. איראן היא גם מובילה עולמית במחקרי תאי גזע ובהשתלת איברים, ויש בה קהילת סטארטאפ צומחת.
+        </div>
+      </div>
+
+      <div class="card coral">
+        <span class="card-emoji">🇳🇬</span>
+        <span class="card-label">ניגריה</span>
+        <div class="card-title">נוליווד — תעשיית הקולנוע השנייה בגודלה בעולם</div>
+        <div class="card-text">
+          ניגריה מייצרת <span class="stat-highlight">כ-2,500 סרטים</span> בשנה — יותר מהוליווד. "נוליווד" היא תעשיית הקולנוע השנייה בגודלה בעולם אחרי בוליווד. סצנת הטק בלאגוס פורחת ונקראת "עמק הסיליקון של אפריקה".
+        </div>
+      </div>
+
+      <div class="card blue">
+        <span class="card-emoji">🇧🇹</span>
+        <span class="card-label">בהוטן</span>
+        <div class="card-title">מדינה שמודדת אושר במקום תוצר</div>
+        <div class="card-text">
+          בהוטן היא המדינה היחידה שמודדת <span class="stat-highlight">אושר לאומי גולמי</span> (GNH) במקום תוצר לאומי גולמי. היא גם המדינה היחידה בעולם עם פליטות פחמן <span class="stat-highlight">שליליות</span> — היערות שלה סופגים יותר פחמן ממה שהמדינה פולטת.
+        </div>
+      </div>
+
+      <div class="card pink">
+        <span class="card-emoji">🇫🇮</span>
+        <span class="card-label">פינלנד</span>
+        <div class="card-title">מהמדינה "המשעממת" למערכת החינוך הטובה בעולם</div>
+        <div class="card-text">
+          פינלנד ביטלה מבחנים סטנדרטיים, מינימום שיעורי בית, ואין מדים. ילדים מתחילים ללמוד <span class="stat-highlight">רק בגיל 7</span>. התוצאה? אחת ממערכות החינוך <span class="stat-highlight">המצליחות ביותר</span> בעולם באופן עקבי — הוכחה שפחות לחץ = יותר הישגים.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>נבנה עם <span class="footer-heart">❤</span> כדי לשבור קופסאות</p>
+    <p style="margin-top: 8px; opacity: 0.6;">המידע מבוסס על מקורות פומביים • 2025</p>
+  </footer>
+
+</div>
+
+<script>
+  // Intersection Observer for card reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+  // Parallax on hero
+  window.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero');
+    const scroll = window.scrollY;
+    if (scroll < window.innerHeight) {
+      hero.style.opacity = 1 - (scroll / (window.innerHeight * 0.8));
+      hero.style.transform = `translateY(${scroll * 0.3}px)`;
+    }
+  });
+</script>
+
+</body>
+</html>
